@@ -9,3 +9,5 @@ app.listen(port, (req,res) => {
 })
 app.use(express.json())
 app.use(cors())
+
+console.log('Гойда')
