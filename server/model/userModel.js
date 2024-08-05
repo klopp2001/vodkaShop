@@ -8,7 +8,9 @@ const userModel = sequalize.define(
     name:{type: DataTypes.STRING},
     email:{type: DataTypes.STRING},
     password:{type: DataTypes.STRING},
-    time:{type: DataTypes.DATE}
+    time:{type: DataTypes.DATE},
+    birth_date:{type: DataTypes.DATE},
+    phone_number: {type: DataTypes.STRING}
   }, {
     timestamps: false
   }
