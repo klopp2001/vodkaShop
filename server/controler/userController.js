@@ -19,6 +19,18 @@ const registerUser = async(req, res) => {
     
     let user = userModel.find({where: {email: email}})
     
+    // select *
+    // from users u
+    // where u.login is not 'Didlo'
+    /*let dildo = {
+      name:'Юрий',
+      surname:'Дилдо',
+      show(){
+        console.log('Я пидор')
+      }
+    }
+    dildo.wife = 'Шлюха'
+    */
     if (user)
       res.status(400).json("This email is already exist")
 
