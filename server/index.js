@@ -5,7 +5,8 @@ require("dotenv").config()
 const app = express()
 const sequelize = require("./database")
 const userModel = require("./model/userModel")
-
+const testModel = require("./model/productModel")
+const userRouter = require("./routes/userRoute")
 
 
 
@@ -35,7 +36,7 @@ app.listen(port, (req,res) => {
 
 app.get("/", async (req, res) =>{
   try{
-    const t = await userModel.findOne({where: {id: 1}})
+    const t = await testModel.findOne({where: {testCol: ''}})
     res.send(`Hello ${t.name}`)  
   }
   catch {
@@ -48,3 +49,4 @@ app.get("/", async (req, res) =>{
 
 app.use(express.json())
 app.use(cors())
+app.use('/user',userRouter)
