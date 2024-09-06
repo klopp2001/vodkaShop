@@ -1,69 +1,95 @@
 import {Container, Row, Col} from "react-bootstrap"
 import ProductCard from "./ProductCard"
-export default function GoodsDisplay(){
+import { useContext, useEffect, useLayoutEffect } from "react"
+import { ShopContext } from "../context/ShopContext"
+
+
+
+export default function GoodsDisplay({category}){
+  
+ const {loadProducts, loadStatus, products, currentPage} = useContext(ShopContext)
+ 
+ useLayoutEffect(()=>{
+  //loadProducts()
+  if (!loadStatus){
+    loadProducts(category)
+      
+  }
+}, [loadStatus])
+ 
+
+  console.log(products)
   return (
       <Container>
-        <Row>
-          <Col>
-            <ProductCard/>
-          </Col>
-          <Col>
-            <ProductCard/>
-          </Col>
-          <Col>
-            <ProductCard/>
-          </Col>
-          <Col>
-            <ProductCard/>
-          </Col>
- 
-        </Row>
-        <Row>
-          <Col>
-            <ProductCard/>
-          </Col>
-          <Col>
-            <ProductCard/>
-          </Col>
-          <Col>
-            <ProductCard/>
-          </Col>
-          <Col>
-            <ProductCard/>
-          </Col>
- 
-        </Row>
-        <Row>
-          <Col>
-            <ProductCard/>
-          </Col>
-          <Col>
-            <ProductCard/>
-          </Col>
-          <Col>
-            <ProductCard/>
-          </Col>
-          <Col>
-            <ProductCard/>
-          </Col>
- 
-        </Row>
-        <Row>
-          <Col>
-            <ProductCard/>
-          </Col>
-          <Col>
-            <ProductCard/>
-          </Col>
-          <Col>
-            <ProductCard/>
-          </Col>
-          <Col>
-            <ProductCard/>
-          </Col>
- 
-        </Row>
- 
+        { loadStatus &&
+          <Row style={{marginTop:"10px",marginBottom:"10px"}}>
+            <Col>
+              {products[currentPage * 16 + 0] && <ProductCard product={products[currentPage * 16 + 0]}/>}
+            </Col>
+            <Col>
+              {products[currentPage * 16 + 1] && <ProductCard product={products[currentPage * 16 + 1]}/>}
+            </Col>
+            <Col>
+              {products[currentPage * 16 + 2] && <ProductCard product={products[currentPage * 16 + 2]}/>}
+            </Col>
+            <Col>
+              {products[currentPage * 16 + 3] && <ProductCard product={products[currentPage * 16 + 3]}/>}
+            </Col>
+  
+          </Row>
+          }
+        { loadStatus &&
+          <Row style={{marginTop:"10px",marginBottom:"10px"}}>
+            <Col>
+              {products[currentPage * 16 + 4] && <ProductCard product={products[currentPage * 16 + 4]}/>}
+            </Col>
+            <Col>
+              {products[currentPage * 16 + 5] && <ProductCard product={products[currentPage * 16 + 5]}/>}
+            </Col>
+            <Col>
+              {products[currentPage * 16 + 6] && <ProductCard product={products[currentPage * 16 + 6]}/>}
+            </Col>
+            <Col>
+              {products[currentPage * 16 + 7] && <ProductCard product={products[currentPage * 16 + 7]}/>}
+            </Col>
+  
+          </Row>
+          }
+          { loadStatus &&
+          <Row style={{marginTop:"10px",marginBottom:"10px"}}>
+            <Col>
+              {products[currentPage * 16 + 8] && <ProductCard product={products[currentPage * 16 + 8]}/>}
+            </Col>
+            <Col>
+              {products[currentPage * 16 + 9] && <ProductCard product={products[currentPage  * 16+ 9]}/>}
+            </Col>
+            <Col>
+              {products[currentPage * 16 + 10] && <ProductCard product={products[currentPage * 16 + 10]}/>}
+            </Col>
+            <Col>
+              {products[currentPage * 16 + 11] && <ProductCard product={products[currentPage * 16 + 11]}/>}
+            </Col>
+  
+          </Row>
+          }
+          { loadStatus &&
+          <Row style={{marginTop:"10px",marginBottom:"10px"}}>
+            <Col>
+              {products[currentPage * 16 + 12] && <ProductCard product={products[currentPage * 16 + 12]}/>}
+            </Col>
+            <Col>
+              {products[currentPage * 16 + 13] && <ProductCard product={products[currentPage * 16 + 13]}/>}
+            </Col>
+            <Col>
+              {products[currentPage * 16 + 14] && <ProductCard product={products[currentPage * 16 + 14]}/>}
+            </Col>
+            <Col>
+              {products[currentPage * 16 + 15] && <ProductCard product={products[currentPage * 16 + 15]}/>}
+            </Col>
+  
+          </Row>
+          }
+        
       </Container>
 
   )

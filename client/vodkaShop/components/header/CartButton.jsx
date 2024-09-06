@@ -1,6 +1,6 @@
 import { ButtonGroup, Button} from "react-bootstrap"
 
-export default function Cart(){
+export default function CartButton(){
   const buttonStyle = {
     width:"45px",
     height:"45px",
@@ -17,7 +17,7 @@ export default function Cart(){
         <img src="../../src/assets/cart.svg" style={{height:"100%", width:"100%", objectFit: "fill",}}/>
       </Button>
 
-      <Button href="profile" variant="secondary" style={buttonStyle}>
+      <Button href="/profile" variant="secondary" style={buttonStyle}>
         <img src="../../src/assets/profile.svg" style={{height:"100%", width:"100%", objectFit: "fill",}}/>
       </Button>
     </ButtonGroup>

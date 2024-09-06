@@ -5,17 +5,17 @@ import Contacts from './Contacts';
 import Logo from './Logo';
 import Search from './Search';
 import { Stack } from 'react-bootstrap';
-import Cart from './Cart';
+import CartButton from './CartButton';
 
 export default function Header() {
   return (
     
-    <Stack style={{margin:"0px"}}>
+    <Stack style={{marginBottom:"30px"}}>
       <Contacts></Contacts>
       <Stack style = {{gap:"70px", margin:"0px"}}direction='horizontal' className='align-items-end'>
         <Logo/>
         <Search/>
-        <Cart/>        
+        <CartButton/>        
       </Stack>
     </Stack>
   );

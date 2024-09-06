@@ -32,9 +32,8 @@ const registerUser = async(req, res) => {
     if (!validator.isStrongPassword(password))
       return res.status(400).json("Password must be a strong enough")
 
-    // if (!isAdult(birthDate)){
-    //   return res.status(400).json("You should be adult")
-    // }
+    if (!isAdult(birthDate))
+      return res.status(400).json("You should be adult")
 
     //TODO:: Проверка на корректность номера (длина, цифры)
      
@@ -54,11 +53,16 @@ const registerUser = async(req, res) => {
 const loginUser = async (req,res) => {
   //const isValidPassword = await bCrypt.compare(password, user.password)
   try{
-    const {login, password} = req.body
-    const user = userModel.findOne({where: {name: login, password: password}})
+    const {name, password} = req.body
+
+    if (!name || !password)
+      return res.status(400).json("Login or password are incorrect")
+    
+    const user = await userModel.findOne({where: {name: name, password: password}})
     if (!user)
-      return res.status(400).json("Invalid login or password")
-    return res.status(200).json("succ")
+      return res.status(400).json("Login or password are incorrect")
+    
+    res.status(200).json({name, email: user.email})
   } catch (error){
     res.status(500).json(error)
   }

@@ -12,7 +12,7 @@ export const AuthContextProvider = ({children}) => {
   const [registerErrorMessage, setRegisterErrorMessage] = useState(null)
   const [isRegisterLoading, setIsRegisterLoading] = useState(false)
 
-
+  
   const [registerInfo, setRegisterInfo] = useState({
     id:"",
     name:"",
@@ -26,7 +26,7 @@ export const AuthContextProvider = ({children}) => {
   const [loginErrorMessage, setLoginErrorMessage] = useState(null)
   const [loginInfo, setLoginInfo] = useState({
     name:"",
-    password:""
+    password:"",
   })
 
 
@@ -57,19 +57,21 @@ export const AuthContextProvider = ({children}) => {
   }, [registerInfo])
 
   const loginUser = useCallback(async (e)=> {
+    e.preventDefault()
     const response = await postRequest(
       `${baseUrl}/user/login`,
-      JSON.stringify()
+      JSON.stringify(loginInfo)
     )
     if (response.error){
-      setRegisterError(true)
-      setRegisterErrorMessage(response.message)
+      setLoginError(true)
+      setLoginErrorMessage(response.message)
     }
     else {
       localStorage.setItem("User", JSON.stringify(response))
       setUser(response)
     }
-  })
+  }, [loginInfo])
+  
   const logoutUser = useCallback(async(e)=>{
     localStorage.removeItem("User")
     setUser(null)
@@ -77,7 +79,9 @@ export const AuthContextProvider = ({children}) => {
   const updateRegisterInfo = useCallback((info)=>{
     setRegisterInfo(info)
   })
-
+  const updateLoginInfo = useCallback((info)=>{
+    setLoginInfo(info)
+  })
   return <AuthContext.Provider value={{
     user,
     registerInfo,
@@ -85,7 +89,12 @@ export const AuthContextProvider = ({children}) => {
     registerError,
     registerErrorMessage,
     updateRegisterInfo,
-    logoutUser
+    loginUser,
+    loginInfo,
+    updateLoginInfo,
+    loginError,
+    loginErrorMessage,
+    logoutUser,
   }}>
     {children}
   </AuthContext.Provider>

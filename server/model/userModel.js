@@ -3,7 +3,7 @@ const sequalize = require("../database")
 const {DataTypes} = require("sequelize")
 
 const userModel = sequalize.define(
-  'user',{
+  'users',{
     //id:{type: DataTypes.INTEGER, unique: true, primaryKey: true, autoIncrement: true},
     name:{type: DataTypes.STRING},
     email:{type: DataTypes.STRING},

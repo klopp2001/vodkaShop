@@ -7,3 +7,20 @@ body{
   outline: none;
   box-shadow: none;
 }
+
+.a_link{
+  text-decoration: none;
+  color:black;
+}
+.a_link:hover{
+  color:darkgray;
+  cursor: pointer;
+}
+.accordion-button:not(.collapsed) {
+  background-color: transparent !important;
+  color: inherit;
+}
+
+button.accordion-button:focus{
+  box-shadow: inherit;
+}
