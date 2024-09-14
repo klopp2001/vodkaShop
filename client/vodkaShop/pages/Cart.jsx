@@ -1,34 +1,42 @@
-import { Stack } from "react-bootstrap";
-import CheckOut from "../components/CheckOut";
-import CartProduct from "../components/CartProduct";
-import { useState, useLayoutEffect } from "react";
-import { baseUrl, getRequest } from "../utils/services";
-export default function  Cart(){
-  const [cart, setCart] = useState(null)
-  const loadCart = async () => {    
-    const user = localStorage.getItem('User')
-    const response = await getRequest(`${baseUrl}/cart/${user.email}`)
-    setCart(response)
-  }
-  loadCart()
-  // useLayoutEffect(()=>{
-  // },[])
-
-  return(
-    <>
-    <Stack style={{backgroundColor:"white", }} gap={4}>
-      <Stack direction="horizontal" className="justify-content-md-between align-items-end">
-        <span style={{fontSize:"24px", marginLeft:"15px"}}>Корзина</span>
-        <a className="a_link" style={{fontSize:"12px", marginRight:"15px"}}>Очистить</a>
+import { Stack } from "react-bootstrap"
+import CheckOut from "../components/CheckOut"
+import CartProduct from "../components/CartItem"
+import { useLayoutEffect, useContext } from "react"
+import { CartContext } from "../context/CartContext"
+import CartProducts from "../components/CartProducts"
+export default function Cart() {
+  const {getCartFromSever, clearCart} = useContext(CartContext)
+  useLayoutEffect(()=>{
+    getCartFromSever()
+  }, [])
+  return (
+    <Stack
+      style={{ backgroundColor: "white", margin: "0 9%", borderRadius: "10px" }}
+      gap={4}
+    >
+      <Stack
+        direction="horizontal"
+        className="justify-content-md-between align-items-end"
+      >
+        <span style={{ fontSize: "40px", marginLeft: "15px" }}>Корзина</span>
+        <a
+          className="a_link"
+          style={{ fontSize: "12px", marginRight: "15px" }}
+          onClick={() => clearCart()}
+        >
+          Очистить
+        </a>
       </Stack>
 
-      <Stack style={{fontSize:"12px", marginRight:"15px"}} direction="horizontal">
+      <Stack
+        style={{ fontSize: "12px", marginRight: "15px" }}
+        direction="horizontal"
+      >
         <Stack>
-          <CartProduct></CartProduct>
+          <CartProducts></CartProducts>
         </Stack>
         <CheckOut></CheckOut>
       </Stack>
     </Stack>
-    </>
   )
 }

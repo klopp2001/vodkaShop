@@ -1,4 +1,4 @@
-import { useCallback , createContext, useState, useEffect, useContext} from "react";
+import { useCallback , createContext, useState, useEffect} from "react";
 import { baseUrl, postRequest } from "../utils/services";
 
 
@@ -72,7 +72,7 @@ export const AuthContextProvider = ({children}) => {
     }
   }, [loginInfo])
   
-  const logoutUser = useCallback(async(e)=>{
+  const logoutUser = useCallback(async()=>{
     localStorage.removeItem("User")
     setUser(null)
   })
@@ -94,6 +94,7 @@ export const AuthContextProvider = ({children}) => {
     updateLoginInfo,
     loginError,
     loginErrorMessage,
+    isRegisterLoading,
     logoutUser,
   }}>
     {children}

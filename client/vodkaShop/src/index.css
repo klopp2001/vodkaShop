@@ -1,19 +1,29 @@
-body{
-  background-color: rgba(63,65,63,255);
-  margin: 0 69px;
+body {
+  background-color: rgb(244, 244, 245);
+  margin: 0 200px;
 }
 
-.form-control:focus{
+#product__menu a {
+  text-decoration: none;
+  color: black;
+}
+
+#product__menu a:hover {
+  color: darkgray;
+  cursor: pointer;
+}
+
+.form-control:focus {
   outline: none;
   box-shadow: none;
 }
 
-.a_link{
+.a_link {
   text-decoration: none;
-  color:black;
+  color: black;
 }
-.a_link:hover{
-  color:darkgray;
+.a_link:hover {
+  color: darkgray;
   cursor: pointer;
 }
 .accordion-button:not(.collapsed) {
@@ -21,6 +31,13 @@ body{
   color: inherit;
 }
 
-button.accordion-button:focus{
+button.accordion-button:focus {
   box-shadow: inherit;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  float: left;
+  padding-right: var(--bs-breadcrumb-item-padding-x);
+  color: var(--bs-breadcrumb-divider-color);
+  content: var(--bs-breadcrumb-divider, "•");
 }

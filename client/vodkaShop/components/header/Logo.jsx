@@ -1,7 +1,22 @@
-export default function Logo(){
+export default function Logo() {
   return (
     <>
-      <a href="/shop" style={{height:"50px", width:"277px", borderRadius:"50px", backgroundColor: "purple"}}>Logo</a>
+      <a
+        href="/shop"
+        style={{
+          height: "50%",
+          width: "3%",
+        }}
+      >
+        <img
+          src="../../src/assets/vodka_shop_logo.png"
+          style={{
+            height: "100%",
+            width: "100%",
+            borderRadius: "70px",
+          }}
+        ></img>
+      </a>
     </>
   )
 }

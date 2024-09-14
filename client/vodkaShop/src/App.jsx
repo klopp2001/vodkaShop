@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import EntryPage from "../pages/EntryPage";
 import Cart from "../pages/Cart";
+import Product from "../pages/Product";
 
 export default function App() {
   const {user} = useContext(AuthContext)
@@ -28,7 +29,7 @@ export default function App() {
           <Route path="/shop/beer" element={<Shop category={"beer"}></Shop>}/>
           <Route path="/shop/whiskey" element={<Shop category={"whiskey"}></Shop>}/>
           <Route path="/about" element={<About/>}/>
-          <Route path="/product" element={<ProductCard/>} />
+          <Route path="/product" element={<Product/>} />
           <Route path="/profile" element={user? <Profile/>:<Login/>}/>
           <Route path="/register" element={user? <Profile/>: <Register/>}/>
           <Route path="/login" element={user? <Profile/> : <Login/>}/>
