@@ -5,7 +5,12 @@ const { DataTypes } = require("sequelize")
 const productModel = sequalize.define(
   "products",
   {
-    id: { type: DataTypes.INTEGER, unique: true, primaryKey: true },
+    id: {
+      type: DataTypes.INTEGER,
+      unique: true,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     name: { type: DataTypes.STRING },
     price: { type: DataTypes.INTEGER },
     rating: { type: DataTypes.DOUBLE },
@@ -19,28 +24,26 @@ const productModel = sequalize.define(
 )
 
 const productImageModel = sequalize.define(
-  "product_image",
+  "product_images",
   {
-    product_image_id: {
+    id: {
       type: DataTypes.INTEGER,
       unique: true,
       primaryKey: true,
+      autoIncrement: true,
     },
     source: { type: DataTypes.STRING },
-    product_id: {
-      type: DataTypes.INTEGER,
-    },
   },
   {
     timestamps: false,
   }
 )
 
-//productImageModel.hasOne(productModel)
-productImageModel.hasOne(productModel, { foreignKey: "id" })
-productModel.belongsTo(productImageModel, { foreignKey: "id" })
+productModel.hasOne(productImageModel)
+
+productImageModel.belongsTo(productModel, {
+  targetKey: "id",
+  foreignKey: "productId",
+})
+//productModel.sync()
 module.exports = { productModel, productImageModel }
-
-// const productModel = sequalize.define(
-
-// )

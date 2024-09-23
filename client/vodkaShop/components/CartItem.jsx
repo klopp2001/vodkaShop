@@ -1,38 +1,36 @@
-import { useContext, useLayoutEffect, useState } from "react";
-import { Stack, Button } from "react-bootstrap";
-import { ShopContext } from "../context/ShopContext";
+import { useContext, useLayoutEffect, useState } from "react"
+import { Stack, Button, Container } from "react-bootstrap"
+import { ShopContext } from "../context/ShopContext"
+import AddToCart from "./buttons/AddToCart"
+import CartItemChanger from "./buttons/CartItemChanger"
+import { CartContext } from "../context/CartContext"
 
-export default function CartItem({image, productName, count}){
-
+export default function CartItem({ product, image }) {
+  const { addedProducts } = useContext(CartContext)
   return (
     <>
       <Stack
         direction="horizontal"
         gap={3}
-        style={{ width: "70%", marginLeft: "15px", marginRight: "15px" }}
+        style={{ marginLeft: "15px", marginRight: "15px" }}
       >
-        <div
-          style={{
-            padding: "10px",
-            backgroundColor: "rgb(178, 190, 181)",
-            borderRadius: "20px",
-          }}
-        >
-          <img
-            src={`http://localhost:8080/static/images/${image}`}
-            style={{ maxWidth: "150px", maxHeight: "50px" }}
-          />
-        </div>
+        <img
+          src={`http://localhost:8080/static/images/${image}`}
+          style={{ maxWidth: "150px", maxHeight: "150px" }}
+        />
 
         <Stack style={{ width: "100%" }} direction="horizontal">
-          <Stack>
-            <span>{productName}</span>
+          <Stack className="justify-content-md-between">
+            <span>{product.name}</span>
+            <span>{product.price}</span>
+
             <Button style={{ width: "5%" }}>del</Button>
           </Stack>
 
-          <Stack>
-            <span>{count}</span>
-            <Button style={{ width: "5%" }}></Button>
+          <Stack className="justify-content-md-between">
+            <div>{product.price * addedProducts[`${product.name}`].count}</div>
+            <CartItemChanger product={product}></CartItemChanger>
+            {/* <AddToCart product={product}></AddToCart> */}
           </Stack>
         </Stack>
       </Stack>

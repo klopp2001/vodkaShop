@@ -2,29 +2,33 @@ import { useContext } from "react"
 import { CartContext } from "../../context/CartContext"
 import { Button, ButtonGroup } from "react-bootstrap"
 
-export default function AddToCart({ productName }) {
+export default function AddToCart({ product }) {
   const {
     addedProducts,
     decreaseProductFromCart,
     addProductToCart,
     sendCartToServer,
   } = useContext(CartContext)
+
   const buttonStyle = {
     width: "45px",
     height: "45px",
     padding: "5px",
   }
-
+   if (addedProducts != undefined) {
+     console.log(addedProducts)
+   }
   return (
     <>
-      {addedProducts[`${productName}`] &&
-      addedProducts[`${productName}`] > 0 ? (
+      {addedProducts &&
+      addedProducts[`${product.name}`] &&
+      addedProducts[`${product.name}`].count > 0 ? (
         <ButtonGroup size="sm">
-          {addedProducts[`${productName}`] == 1 ? (
+          {addedProducts[`${product.name}`].count === 1 ? (
             <Button
               onClick={() => {
-                decreaseProductFromCart(productName)
-                sendCartToServer(productName, false)
+                decreaseProductFromCart(product)
+                sendCartToServer(product.id, false)
               }}
               style={buttonStyle}
             >
@@ -36,19 +40,19 @@ export default function AddToCart({ productName }) {
           ) : (
             <Button
               onClick={() => {
-                decreaseProductFromCart(productName)
-                sendCartToServer(productName, false)
+                decreaseProductFromCart(product)
+                sendCartToServer(product.id, false)
               }}
               style={buttonStyle}
             >
               -
             </Button>
           )}
-          <Button disabled>{addedProducts[`${productName}`]}</Button>
+          <Button disabled>{addedProducts[`${product.name}`].count}</Button>
           <Button
             onClick={() => {
-              addProductToCart(productName)
-              sendCartToServer(productName)
+              addProductToCart(product)
+              sendCartToServer(product.id)
             }}
             style={buttonStyle}
           >
@@ -58,8 +62,8 @@ export default function AddToCart({ productName }) {
       ) : (
         <Button
           onClick={() => {
-            addProductToCart(productName)
-            sendCartToServer(productName)
+            addProductToCart(product)
+            sendCartToServer(product.id)
           }}
           style={{ margin: "2px", padding: "0px 5px", width: "100px" }}
           className="border-0"

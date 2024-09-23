@@ -13,11 +13,17 @@ export const ShopContextProvider = ({ children }) => {
   const [productCategory, setProductCategory] = useState(null)
 
   const [isProductPage, setIsProductPage] = useState(false)
-  const [productPage, setProductPage] = useState({})
+  const [productPage, setProductPage] = useState(undefined)
 
+  //const loadProduct
   const loadProductPage = (product) =>{
     setIsProductPage(true)
     setProductPage(product)
+  }
+
+  const loadExactProductPage = async (productName) => {
+    const response = await getRequest(`${baseUrl}/shop/product/${productName}`)
+    loadProductPage(response)        
   }
 
   const loadProductsInfo = async (category) => {
@@ -61,6 +67,7 @@ export const ShopContextProvider = ({ children }) => {
         setIsProductPage,
         loadProducts,
         loadProductPage,
+        loadExactProductPage,
         productPage,
         updateProductCategory,
 

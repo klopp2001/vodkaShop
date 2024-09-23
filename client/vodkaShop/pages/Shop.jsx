@@ -7,7 +7,7 @@ import { useContext } from "react"
 import Product from "./Product"
 export default function Shop({ category }) {
   return (
-    <ShopContextProvider>
+    
       <Container fluid>
         <Row className="justify-content-md-center">
           <Col xs={2} style={{ padding: 0 }}>
@@ -24,6 +24,6 @@ export default function Shop({ category }) {
           </Col>
         </Row>
       </Container>
-    </ShopContextProvider>
+
   )
 }

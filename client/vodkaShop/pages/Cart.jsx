@@ -32,7 +32,7 @@ export default function Cart() {
         style={{ fontSize: "12px", marginRight: "15px" }}
         direction="horizontal"
       >
-        <Stack>
+        <Stack gap={5}>
           <CartProducts></CartProducts>
         </Stack>
         <CheckOut></CheckOut>

@@ -4,32 +4,47 @@ import { postRequest, getRequest, baseUrl } from "../utils/services"
 export const CartContext = createContext(null)
 
 export const CartContextProvider = ({ children }) => {
-  const [addedProducts, setAddedToCart] = useState({})
+  const [addedProducts, setAddedToCart] = useState(undefined)
   const [productImages, setProductImages] = useState({})
   const [isLoaded, setIsLoaded] = useState(false)
 
-  const addProductToCart = useCallback((productName) => {
-    if (addedProducts[productName]) {
+  const addProductToCart = useCallback((product) => {
+    if (addedProducts[`${product.name}`]) {
       setAddedToCart({
         ...addedProducts,
-        [productName]: addedProducts[productName] + 1,
+        [`${product.name}`]: {
+          product: product,
+          count: addedProducts[`${product.name}`].count + 1,
+        },
       })
     } else {
       setAddedToCart({
         ...addedProducts,
-        [productName]: 1,
+        [`${product.name}`]: {
+          product: product,
+          count: 1,
+        },
       })
     }
   })
 
-  const decreaseProductFromCart = useCallback((productName) => {
+  const decreaseProductFromCart = useCallback((product) => {
     setAddedToCart({
       ...addedProducts,
-      [productName]: addedProducts[productName] - 1,
+      [`${product.name}`]: {
+        product: product,
+        count: addedProducts[`${product.name}`].count - 1,
+      },
     })
   })
 
-
+  const dropProduct = useCallback(async (productId) => {
+    const user = JSON.parse(localStorage.getItem("User"))
+    const cartInfo = {
+      userEmail: user.email,
+      productId: productId,
+    }
+  })
   const clearCart = useCallback(async () => {
     const user = JSON.parse(localStorage.getItem("User"))
     await postRequest(`${baseUrl}/cart/clear`, JSON.stringify(user))
@@ -40,12 +55,12 @@ export const CartContextProvider = ({ children }) => {
     return addedProducts[productName]
   })
 
-  const sendCartToServer = useCallback((productName, isAdded = true) => {
+  const sendCartToServer = useCallback((productId, isAdded = true) => {
     const user = JSON.parse(localStorage.getItem("User"))
-
+    //TODO:: productId
     const cartInfo = {
       userEmail: user.email,
-      productName: productName,
+      productId: productId,
     }
 
     if (isAdded) {
@@ -60,12 +75,18 @@ export const CartContextProvider = ({ children }) => {
     const response = await getRequest(`${baseUrl}/cart/${user.email}`)
     let cart = {}
     let images = {}
-    for (let product of response) {
-      cart[`${product.product_name}`] = product.count
+    for (let productRes of response) {
+      cart[`${productRes.product.name}`] = {
+        product: productRes.product,
+        count: productRes.count,
+        // price: product.price,
+      }
+
+      productRes.count
       let pr = await getRequest(
-        `${baseUrl}/shop/product/${product.product_name}`
+        `${baseUrl}/shop/product/${productRes.product.name}`
       )
-      images[`${product.product_name}`] = pr.product_image.source
+      images[`${productRes.product.name}`] = pr.product_image.source
     }
 
     setAddedToCart(cart)

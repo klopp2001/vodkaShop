@@ -14,5 +14,5 @@ export default function GoodsDisplay({ category }) {
     }
   }, [])
 
-  return isProductPage ? <Product/> :<Products />
+  return <Products />
 }

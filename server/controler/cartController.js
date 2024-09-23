@@ -4,14 +4,21 @@ const userModel = require("../model/userModel")
 
 const addProductToCart = async (req, res) => {
   try {
-    const { userEmail, productName } = req.body
+    const { userEmail, productId } = req.body
     let cartRecord = await cartModel.findOne({
-      where: { user_email: userEmail, product_name: productName },
+      where: {
+        "$user.email$": userEmail,
+        "$product.id$": productId,
+      },
+      include: [
+        { model: userModel, as: "user" },
+        { model: productModel, as: "product" },
+      ],
     })
     if (!cartRecord) {
       cartRecord = await cartModel.create({
-        user_email: userEmail,
-        product_name: productName,
+        userEmail: userEmail,
+        productId: productId,
         count: 1,
       })
     } else {
@@ -22,15 +29,16 @@ const addProductToCart = async (req, res) => {
 
     return res.status(200).json(cartRecord)
   } catch (error) {
+    console.log(error)
     res.status(500).json(error)
   }
 }
 
 const deleteProductFromCart = async (req, res) => {
   try {
-    const { userEmail, productName } = req.body
+    const { userEmail, productId } = req.body
     let cartRecord = await cartModel.findOne({
-      where: { user_email: userEmail, product_name: productName },
+      where: { userEmail: userEmail, productId: productId },
     })
 
     if (!cartRecord) {
@@ -49,6 +57,7 @@ const deleteProductFromCart = async (req, res) => {
     return res.status(500).json(error)
   }
 }
+
 const clearCart = async (req, res) => {
   try {
     const { email } = req.body
@@ -70,11 +79,13 @@ const getCart = async (req, res) => {
   try {
     const { email } = req.params
     const cartProducts = await cartModel.findAll({
-      where: { user_email: email },
-      attributes: ["product_name", "count"],
+      where: { userEmail: email },
+      attributes: ["productId", "count"],
+      include: productModel,
     })
     return res.status(200).json(cartProducts)
   } catch (error) {
+    console.log(error)
     res.status(500).json(error)
   }
 }

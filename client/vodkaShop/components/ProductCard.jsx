@@ -49,11 +49,13 @@ export default function ProductCard({ product }) {
       </Card.Header>
       <ListGroup className="align-items-center ">
         <ListGroup.Item style={{ padding: "0" }} className="border-0">
-          <Image
-            style={{ cursor: "pointer" }}
-            onClick={() => loadProductPage(product)}
-            src={`http://localhost:8080/static/images/${product.product_image.source}`}
-          ></Image>
+          <a href={`product/${product.name}`}>
+            <Image
+              style={{ cursor: "pointer" }}
+              onClick={() => loadProductPage(product)}
+              src={`http://localhost:8080/static/images/${product.product_image.source}`}
+            ></Image>
+          </a>
         </ListGroup.Item>
         <ListGroup.Item style={{ padding: "0" }} className="border-0">
           {product.name}
@@ -65,7 +67,7 @@ export default function ProductCard({ product }) {
           {product.rating}
         </ListGroup.Item>
         <ListGroup.Item className="border-0" style={{ padding: "0" }}>
-          <AddToCart product={product.name}></AddToCart>
+          <AddToCart product={product}></AddToCart>
         </ListGroup.Item>
       </ListGroup>
     </Card>

@@ -29,7 +29,7 @@ export default function App() {
           <Route path="/shop/beer" element={<Shop category={"beer"}></Shop>}/>
           <Route path="/shop/whiskey" element={<Shop category={"whiskey"}></Shop>}/>
           <Route path="/about" element={<About/>}/>
-          <Route path="/product" element={<Product/>} />
+          <Route path="/shop/product/:name" element={<Product/>} />
           <Route path="/profile" element={user? <Profile/>:<Login/>}/>
           <Route path="/register" element={user? <Profile/>: <Register/>}/>
           <Route path="/login" element={user? <Profile/> : <Login/>}/>

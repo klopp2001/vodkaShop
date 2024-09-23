@@ -14,9 +14,9 @@ export default function CartProducts() {
     for (let property in addedProducts) {
       products.push(
         <CartItem
-          image={productImages[property]}
-          productName={property}
-          count={addedProducts[property]}
+          product={addedProducts[`${property}`].product}
+          image={productImages[`${property}`]}
+         
         ></CartItem>
       )
     }

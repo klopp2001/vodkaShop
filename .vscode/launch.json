@@ -8,14 +8,14 @@
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Launch Chrome against localhost",
+      "name": "Launch Client",
       "url": "http://localhost:5173",
       "webRoot": "${workspaceFolder}/client/vodkaShop"
     },    
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch ProEgram",
+      "name": "Launch Server",
       "outputCapture": "std",
       "program": "${workspaceFolder}/server/index.js",
       "envFile": "${workspaceFolder}/server/.env",

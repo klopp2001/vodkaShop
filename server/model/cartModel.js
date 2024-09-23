@@ -14,20 +14,7 @@ const cartModel = sequalize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_email: {
-      type: DataTypes.STRING,
-      references: {
-        model: userModel,
-        key: "email",
-      },
-    },
-    product_name: {
-      type: DataTypes.STRING,
-      references: {
-        model: productModel,
-        key: "name",
-      },
-    },
+
     count: {
       type: DataTypes.INTEGER,
     },
@@ -36,14 +23,17 @@ const cartModel = sequalize.define(
     timestamps: false,
   }
 )
+//userModel.hasOne(cartModel)
+//productModel.belongsTo(cartModel)
 
-// userModel.belongsToMany(productModel, { through: cartModel })
-// productModel.belongsToMany(userModel, { through: cartModel })
+cartModel.belongsTo(userModel, { targetKey: "email", foreignKey: "userEmail" })
 
-// cartModel.hasMany(userModel, { foreignKey: "email" })
-// userModel.belongsTo(cartModel, { foreignKey: "email" })
-
-// cartModel.hasMany(productModel, { foreignKey: "id" })
-// productModel.belongsTo(cartModel, { foreignKey: "id" })
+//productModel.belongsTo(cartModel)
+productModel.hasMany(cartModel, { foreignKey: "productId" })
+cartModel.belongsTo(productModel)
+//productModel.sync({ force: true })
+//cartModel.sync({ force: true })
+//productModel.sync()
+//cartModel.sync()
 
 module.exports = cartModel
