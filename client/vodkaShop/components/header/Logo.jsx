@@ -2,7 +2,7 @@ export default function Logo() {
   return (
     <>
       <a
-        href="/shop"
+        href="/"
         style={{
           height: "50%",
           width: "3%",

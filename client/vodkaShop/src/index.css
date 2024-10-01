@@ -17,7 +17,9 @@ body {
   outline: none;
   box-shadow: none;
 }
-
+a {
+  text-decoration: none;
+}
 .a_link {
   text-decoration: none;
   color: black;
@@ -40,4 +42,83 @@ button.accordion-button:focus {
   padding-right: var(--bs-breadcrumb-item-padding-x);
   color: var(--bs-breadcrumb-divider-color);
   content: var(--bs-breadcrumb-divider, "•");
+}
+.carousel-indicators [data-bs-target] {
+  height: 7px;
+  width: 35px;
+  background-color: black;
+}
+.carousel-indicators .active {
+  height: 7px;
+  width: 10px;
+  background-color: black;
+}
+
+.catalogue__item {
+  background: gray;
+  width: 250px;
+  height: 160px;
+  margin: 10px;
+  overflow: hidden;
+  border-radius: 40px;
+  /* background: rgb(190, 255, 253);
+  background: linear-gradient(
+    186deg,
+    rgba(190, 255, 253, 1) 0%,
+    rgba(59, 216, 227, 1) 54%,
+    rgba(28, 193, 204, 1) 100%
+  ); */
+  background: rgb(188, 210, 210);
+  background: linear-gradient(
+    195deg,
+    rgba(188, 210, 210, 1) 0%,
+    rgba(143, 170, 172, 1) 54%,
+    rgba(87, 107, 108, 1) 100%
+  );
+  /* background: linear-gradient(
+    180deg,
+    rgba(9, 136, 123, 1) 36%,
+    rgba(24, 82, 109, 1) 100%
+  ); */
+}
+.catalogue__item:hover {
+  /* background-color: wheat; */
+  cursor: pointer;
+}
+.catalogue__category {
+  color: white;
+  margin-left: 20px;
+  font-weight: 600;
+}
+
+.catalogue__image {
+  /* margin-left: 100px; */
+
+  margin-top: -15px;
+
+  width: 100px;
+
+  max-width: 120px;
+  float: right;
+}
+.image_holder {
+  width: 160px;
+  height: 100px;
+  margin-left: 100px;
+  margin-top: -20px;
+}
+.catalogue__item:hover .catalogue__image {
+  animation: grow;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes grow {
+  from {
+    width: 100px;
+  }
+
+  to {
+    width: 120px;
+  }
 }

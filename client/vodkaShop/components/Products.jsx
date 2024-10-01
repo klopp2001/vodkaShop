@@ -12,7 +12,7 @@ export default function Products() {
     getCartFromSever()
   }, [])
   return (
-    <Container>
+    <Container >
       {loadStatus && (
         <Row style={{ marginTop: "10px", marginBottom: "10px" }}>
           <Col>

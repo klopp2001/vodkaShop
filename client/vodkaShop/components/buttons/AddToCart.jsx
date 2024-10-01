@@ -11,7 +11,7 @@ export default function AddToCart({ product }) {
   } = useContext(CartContext)
 
   const buttonStyle = {
-    width: "45px",
+    width: "55px",
     height: "45px",
     padding: "5px",
   }
@@ -23,9 +23,10 @@ export default function AddToCart({ product }) {
       {addedProducts &&
       addedProducts[`${product.name}`] &&
       addedProducts[`${product.name}`].count > 0 ? (
-        <ButtonGroup size="sm">
+        <ButtonGroup size="sm" >
           {addedProducts[`${product.name}`].count === 1 ? (
             <Button
+              variant="danger"
               onClick={() => {
                 decreaseProductFromCart(product)
                 sendCartToServer(product.id, false)
@@ -39,6 +40,7 @@ export default function AddToCart({ product }) {
             </Button>
           ) : (
             <Button
+              variant="danger"
               onClick={() => {
                 decreaseProductFromCart(product)
                 sendCartToServer(product.id, false)
@@ -48,8 +50,11 @@ export default function AddToCart({ product }) {
               -
             </Button>
           )}
-          <Button disabled>{addedProducts[`${product.name}`].count}</Button>
+          <Button variant="danger" disabled>
+            {addedProducts[`${product.name}`].count}
+          </Button>
           <Button
+            variant="danger"
             onClick={() => {
               addProductToCart(product)
               sendCartToServer(product.id)
@@ -61,13 +66,12 @@ export default function AddToCart({ product }) {
         </ButtonGroup>
       ) : (
         <Button
+          variant="danger"
           onClick={() => {
             addProductToCart(product)
             sendCartToServer(product.id)
           }}
-          style={{ margin: "2px", padding: "0px 5px", width: "100px" }}
-          className="border-0"
-          variant="danger"
+          style={{ padding: "0px 5px", width: "100px" }}
         >
           Add
         </Button>

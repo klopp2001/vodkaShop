@@ -38,13 +38,19 @@ export const CartContextProvider = ({ children }) => {
     })
   })
 
-  const dropProduct = useCallback(async (productId) => {
+  const dropProduct = useCallback(async (product) => {
     const user = JSON.parse(localStorage.getItem("User"))
     const cartInfo = {
       userEmail: user.email,
-      productId: productId,
+      productId: product.id,
     }
+    const productName = product.name
+    let { [product.name]: t, ...rest } = addedProducts
+    //delete temp[`${product.name}`]
+    postRequest(`${baseUrl}/cart/drop`, JSON.stringify(cartInfo))
+    setAddedToCart(rest)
   })
+
   const clearCart = useCallback(async () => {
     const user = JSON.parse(localStorage.getItem("User"))
     await postRequest(`${baseUrl}/cart/clear`, JSON.stringify(user))
@@ -106,6 +112,7 @@ export const CartContextProvider = ({ children }) => {
         sendCartToServer,
         getCartFromSever,
         clearCart,
+        dropProduct,
         isLoaded,
       }}
     >

@@ -19,6 +19,7 @@ export default function CartItemChanger({ product }) {
     <ButtonGroup style={{ maxWidth: "100px" }} size="sm">
       {addedProducts[`${product.name}`].count != 1 ? (
         <Button
+          variant="danger"
           onClick={() => {
             decreaseProductFromCart(product)
             sendCartToServer(product.id, false)
@@ -28,14 +29,15 @@ export default function CartItemChanger({ product }) {
           -
         </Button>
       ) : (
-        <Button disabled style={buttonStyle}>
+        <Button variant="danger" disabled style={buttonStyle}>
           -
         </Button>
       )}
-      <Button style={buttonStyle} disabled>
+      <Button variant="danger" style={buttonStyle} disabled>
         {addedProducts[`${product.name}`].count}
       </Button>
       <Button
+        variant="danger"
         onClick={() => {
           addProductToCart(product)
           sendCartToServer(product.id)

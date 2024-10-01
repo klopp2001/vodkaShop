@@ -34,7 +34,7 @@ const addProductToCart = async (req, res) => {
   }
 }
 
-const deleteProductFromCart = async (req, res) => {
+const decreaseProductFromCart = async (req, res) => {
   try {
     const { userEmail, productId } = req.body
     let cartRecord = await cartModel.findOne({
@@ -62,7 +62,7 @@ const clearCart = async (req, res) => {
   try {
     const { email } = req.body
     let cartRecord = await cartModel.findAll({
-      where: { user_email: email },
+      where: { userEmail: email },
     })
 
     if (!cartRecord) {
@@ -75,6 +75,7 @@ const clearCart = async (req, res) => {
     return res.status(500).json(error)
   }
 }
+
 const getCart = async (req, res) => {
   try {
     const { email } = req.params
@@ -90,4 +91,23 @@ const getCart = async (req, res) => {
   }
 }
 
-module.exports = { addProductToCart, deleteProductFromCart, getCart, clearCart }
+const dropProduct = async (req, res) => {
+  try {
+    const { userEmail, productId } = req.body
+    const cartProduct = await cartModel.findOne({
+      where: { userEmail: userEmail, productId: productId },
+    })
+    cartProduct.destroy()
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+module.exports = {
+  addProductToCart,
+  decreaseProductFromCart,
+  dropProduct,
+  getCart,
+  clearCart,
+}

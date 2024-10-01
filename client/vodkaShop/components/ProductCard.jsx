@@ -43,8 +43,8 @@ export default function ProductCard({ product }) {
     <Card style={{ width: "200px", height: "400px" }}>
       <Card.Header style={{ padding: "5px 2px" }}>
         <Stack direction="horizontal" className="justify-content-between">
-          <Button style={{ margin: "0" }}></Button>
-          <Button></Button>
+          <Button variant="secondary" style={{ margin: "0" }}></Button>
+          <Button variant="secondary"></Button>
         </Stack>
       </Card.Header>
       <ListGroup className="align-items-center ">

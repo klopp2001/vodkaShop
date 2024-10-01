@@ -8,9 +8,18 @@ export default function PageButtons({btnSize}){
   let buttons = new Array()
   for (let i = 0; i < btnSize; i++){
     if (i == currentPage){
-      buttons.push(<Button size="sm" disabled={true} variant="secondary"onClick={()=>{
-        setCurrentPage(i)
-      }}>{i+1}</Button>)
+      buttons.push(
+        <Button
+          size="sm"
+          disabled={true}
+          variant="secondary"
+          onClick={() => {
+            setCurrentPage(i)
+          }}
+        >
+          {i + 1}
+        </Button>
+      )
     }
     else {
       buttons.push(<Button size="sm" variant="secondary"onClick={()=>{
