@@ -1,10 +1,12 @@
 import { useContext, useLayoutEffect, useState } from "react"
 import { Stack, Button, Container } from "react-bootstrap"
-import { ShopContext } from "../context/ShopContext"
-import AddToCart from "./buttons/AddToCart"
-import CartItemChanger from "./buttons/CartItemChanger"
-import { CartContext } from "../context/CartContext"
-import DropProduct from "./buttons/DropProduct"
+
+
+import CartItemChanger from "../../buttons/CartItemChanger"
+import { CartContext } from "../../../context/CartContext"
+import DropProduct from "../../buttons/DropProduct"
+import AddToCart from "../../buttons/AddToCart"
+import { ShopContext } from "../../../context/ShopContext"
 
 export default function CartItem({ product, image }) {
   const { addedProducts } = useContext(CartContext)

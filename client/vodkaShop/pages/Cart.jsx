@@ -1,9 +1,8 @@
 import { Stack } from "react-bootstrap"
-import CheckOut from "../components/CheckOut"
-import CartProduct from "../components/CartItem"
+import CheckOut from "../components/widgets/cartWidgets/CheckOut"
 import { useLayoutEffect, useContext } from "react"
 import { CartContext } from "../context/CartContext"
-import CartProducts from "../components/CartProducts"
+import CartProducts from "../components/widgets/cartWidgets/CartProducts"
 export default function Cart() {
   const { getCartFromSever, clearCart, addedProducts } = useContext(CartContext)
   useLayoutEffect(() => {
@@ -11,15 +10,20 @@ export default function Cart() {
   }, [])
   return (
     <Stack
-      style={{ backgroundColor: "white", margin: "0 9%", paddingBottom:"2%", borderRadius: "10px" }}
+      style={{
+        backgroundColor: "white",
+        margin: "0 9%",
+        paddingBottom: "2%",
+        borderRadius: "10px",
+      }}
       gap={4}
     >
       <Stack
-        style={{marginLeft:"15px", marginRight:"15px"}}
+        style={{ marginLeft: "15px", marginRight: "15px" }}
         direction="horizontal"
         className="justify-content-md-between align-items-end"
       >
-        <span style={{ fontSize: "40px"}}>Корзина</span>
+        <span style={{ fontSize: "40px" }}>Корзина</span>
         <a
           className="a_link"
           style={{ fontSize: "18px" }}

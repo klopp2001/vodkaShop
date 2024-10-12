@@ -1,18 +1,21 @@
 import { useContext, useLayoutEffect } from "react"
-import { ShopContext } from "../context/ShopContext"
-import { CartContext } from "../context/CartContext"
+import { ShopContext } from "../../../context/ShopContext"
+import { CartContext } from "../../../context/CartContext"
 import { Col, Container, Row } from "react-bootstrap"
-import ProductCard from "./ProductCard"
-import PageButtons from "./PageButtons"
+import ProductCard from "../productWidgets/ProductCard"
+import PageButtons from "../../buttons/PageButtons"
 
 export default function Products() {
-  const {loadStatus, products, currentPage} = useContext(ShopContext)
+  const { loadStatus, loadFavouriteIndo, products, currentPage } =
+    useContext(ShopContext)
   const { getCartFromSever } = useContext(CartContext)
-  useLayoutEffect(()=>{
+
+  useLayoutEffect(() => {
     getCartFromSever()
   }, [])
+
   return (
-    <Container >
+    <Container>
       {loadStatus && (
         <Row style={{ marginTop: "10px", marginBottom: "10px" }}>
           <Col>

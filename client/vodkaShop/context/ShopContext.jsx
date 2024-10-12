@@ -15,23 +15,24 @@ export const ShopContextProvider = ({ children }) => {
   const [isProductPage, setIsProductPage] = useState(false)
   const [productPage, setProductPage] = useState(undefined)
 
-  //const loadProduct
-  const loadProductPage = (product) =>{
+  const loadProductPage = (product) => {
     setIsProductPage(true)
     setProductPage(product)
   }
 
   const loadExactProductPage = async (productName) => {
     const response = await getRequest(`${baseUrl}/shop/product/${productName}`)
-    loadProductPage(response)        
+    loadProductPage(response)
   }
 
   const loadProductsInfo = async (category) => {
-    const response = await getRequest(`${baseUrl}/shop/products/${category}`)
-    if (response.error) {
+    const infoResponse = await getRequest(
+      `${baseUrl}/shop/products/${category}`
+    )
+    if (infoResponse.error) {
       setProductsError(true)
     } else {
-      setProducts(response)
+      setProducts(infoResponse)
       setLoadStatus(true)
     }
   }

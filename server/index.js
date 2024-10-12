@@ -9,6 +9,7 @@ const testModel = require("./model/productModel")
 const userRouter = require("./routes/userRoute")
 const productRouter = require("./routes/productsRoute")
 const cartRouter = require("./routes/cartRoute")
+const favouriteRouter = require("./routes/favouriteRouter")
 
 const router = express.Router()
 
@@ -43,6 +44,8 @@ app.use(cors())
 app.use("/user", userRouter)
 app.use("/shop", productRouter)
 app.use("/cart", cartRouter)
+app.use("/favourite", favouriteRouter)
+
 app.listen(port, (req, res) => {
   console.log(`server is running on port ${port}`)
   connectToDB()

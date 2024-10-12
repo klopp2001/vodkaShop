@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { Button, Stack } from "react-bootstrap"
-import { ShopContext } from "../context/ShopContext"
+import { ShopContext } from "../../context/ShopContext"
+
 
 
 export default function PageButtons({btnSize}){
