@@ -7,7 +7,7 @@ function Delimiter() {
 }
 export default function CartProducts({ products }) {
   let result = new Array()
-  const { getCartFromSever, productImages, isLoaded } = useContext(CartContext)
+  const { getCartFromSever, productImages } = useContext(CartContext)
 
   useLayoutEffect(() => {
     getCartFromSever()

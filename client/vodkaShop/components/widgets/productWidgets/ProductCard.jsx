@@ -1,41 +1,11 @@
 //TODO: изменить свойства на объект, когда создам модель бд
 
-import { useContext, useLayoutEffect, useState } from "react"
-import {
-  Stack,
-  Card,
-  Form,
-  Button,
-  ListGroup,
-  Image,
-  ButtonGroup,
-} from "react-bootstrap"
+import { useContext } from "react"
+import { Stack, Card, ListGroup, Image } from "react-bootstrap"
 import { ShopContext } from "../../../context/ShopContext"
-import { baseUrl, postRequest } from "../../../utils/services"
-import { CartContext } from "../../../context/CartContext"
-import Shop from "../../../pages/Shop"
 import AddToCart from "../../buttons/AddToCart"
 import { FavouriteContext } from "../../../context/FavouriteContext"
 
-// function addProductCartToServer(productName) {
-//   const user = JSON.parse(localStorage.getItem("User"))
-
-//   const cartInfo = {
-//     userEmail: user.email,
-//     productName: productName,
-//   }
-//   postRequest(`${baseUrl}/cart/`, JSON.stringify(cartInfo))
-// }
-
-// function deleteProductCartFromServer(productName) {
-//   const user = JSON.parse(localStorage.getItem("User"))
-
-//   const cartInfo = {
-//     userEmail: user.email,
-//     productName: productName,
-//   }
-//   postRequest(`${baseUrl}/cart/delete`, JSON.stringify(cartInfo))
-// }
 function HeartLogo({ productId }) {
   const { favouriteProductsId, addFavouriteProduct, deleteFavouriteProduct } =
     useContext(FavouriteContext)

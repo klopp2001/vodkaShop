@@ -1,12 +1,9 @@
-import { useContext, useLayoutEffect, useState } from "react"
-import { Stack, Button, Container } from "react-bootstrap"
-
+import { useContext } from "react"
+import { Stack } from "react-bootstrap"
 
 import CartItemChanger from "../../buttons/CartItemChanger"
 import { CartContext } from "../../../context/CartContext"
 import DropProduct from "../../buttons/DropProduct"
-import AddToCart from "../../buttons/AddToCart"
-import { ShopContext } from "../../../context/ShopContext"
 
 export default function CartItem({ product, image }) {
   const { addedProducts } = useContext(CartContext)
@@ -22,11 +19,6 @@ export default function CartItem({ product, image }) {
           src={`http://localhost:8080/static/images/${image}`}
           style={{ maxWidth: "150px", maxHeight: "150px" }}
         />
-
-        {/* <Stack
-          //style={{ width: "30%" }}
-          direction="horizontal"
-        > */}
         <Stack className="justify-content-md-between">
           <Stack>
             <span style={{ fontSize: "22px" }}>{product.name}</span>
@@ -34,22 +26,15 @@ export default function CartItem({ product, image }) {
           </Stack>
 
           <DropProduct product={product}></DropProduct>
-          {/* <Button style={{ width: "5%" }}>del</Button> */}
         </Stack>
 
-        <Stack
-          // style={{ width: "30%" }}
-
-          className="justify-content-md-between align-items-end"
-        >
+        <Stack className="justify-content-md-between align-items-end">
           <div style={{ fontWeight: "bold", fontSize: "24px" }}>
             {product.price * addedProducts[`${product.name}`].count} ₽
           </div>
           <CartItemChanger product={product}></CartItemChanger>
-          {/* <AddToCart product={product}></AddToCart> */}
         </Stack>
       </Stack>
-      {/* </Stack> */}
     </>
   )
 }
