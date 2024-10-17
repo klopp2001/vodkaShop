@@ -1,26 +1,26 @@
-import { ButtonGroup, Button} from "react-bootstrap"
+import { ButtonGroup, Button } from "react-bootstrap"
+import { CartSvg, HeartSvg, ProfileSvg } from "../svg/svgs"
 
-export default function CartButton(){
+export default function UserActions() {
   const buttonStyle = {
-    width:"45px",
-    height:"45px",
-    padding: "5px",
+    width: "45px",
+    height: "45px",
   }
   return (
     // <div style={{width: "267px", height:"50px", backgroundColor:"white", borderRadius:"25px", textAlign:"center"}}>
     //   Cart
     // </div>
-    
+
     <ButtonGroup>
-
-      <Button href="/cart" variant = "secondary" style={buttonStyle} >
-        <img src="../../src/assets/cart.svg" style={{height:"100%", width:"100%", objectFit: "fill",}}/>
+      <Button href="/cart" variant="dark" style={buttonStyle}>
+        <CartSvg />
       </Button>
-
-      <Button href="/profile" variant="secondary" style={buttonStyle}>
-        <img src="../../src/assets/profile.svg" style={{height:"100%", width:"100%", objectFit: "fill",}}/>
+      <Button href="/profile/favourite" variant="dark" style={buttonStyle}>
+        <HeartSvg />
+      </Button>
+      <Button href="/profile" variant="dark" style={buttonStyle}>
+        <ProfileSvg />
       </Button>
     </ButtonGroup>
-
   )
 }

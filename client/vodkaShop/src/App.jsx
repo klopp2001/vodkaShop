@@ -4,7 +4,7 @@ import { Routes, Router, Route, Navigate } from "react-router-dom"
 import About from "../pages/About"
 import Shop from "../pages/Shop"
 import ProductCard from "../components/widgets/productWidgets/ProductCard"
-import Profile from "../components/widgets/profileWidgets/Profile"
+
 import Register from "../pages/Register"
 import Login from "../pages/Login"
 import { useContext } from "react"
@@ -14,6 +14,7 @@ import Cart from "../pages/Cart"
 import Product from "../pages/Product"
 import FavouriteContextProvider from "../context/FavouriteContext"
 import Favourite from "../pages/Favourite"
+import Profile from "../pages/Profile"
 
 export default function App() {
   const { user } = useContext(AuthContext)

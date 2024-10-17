@@ -7,8 +7,9 @@ export default function FavouriteContextProvider({ children }) {
   const [favouriteProducts, setFavouriteProducts] = useState(undefined)
   const [favouriteProductsId, setFavouriteProductsId] = useState(new Set())
 
-  const loadFavouriteInfo = async (userId) => {
+  const loadFavouriteInfo = async () => {
     try {
+      const userId = JSON.parse(localStorage.getItem("User")).id
       const favouriteInfo = await getRequest(`${baseUrl}/favourite/${userId}`)
       let res = []
       for (let item of favouriteInfo) {

@@ -5,20 +5,16 @@ import Contacts from "./Contacts"
 import Logo from "./Logo"
 import Search from "./Search"
 import { Stack } from "react-bootstrap"
-import CartButton from "./CartButton"
+import UserActions from "./CartButton"
 
 export default function Header() {
   return (
     <Stack style={{ marginBottom: "30px" }}>
       <Contacts></Contacts>
-      <Stack
-        style={{  margin: "0px" }}
-        direction="horizontal"
-        gap={2}
-      >
+      <Stack style={{ margin: "0px" }} direction="horizontal" gap={2}>
         <Logo />
         <Search />
-        <CartButton />
+        <UserActions />
       </Stack>
     </Stack>
   )

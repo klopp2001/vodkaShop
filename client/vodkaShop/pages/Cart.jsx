@@ -37,7 +37,7 @@ export default function Cart() {
         style={{ fontSize: "12px", marginRight: "15px" }}
         direction="horizontal"
       >
-        <Stack style={{ marginLeft: "15px", marginRight: "15px" }} gap={3}>
+        <Stack style={{ padding:"0px 50px", marginLeft: "15px", marginRight: "15px" }} gap={3}>
           <CartProducts products={addedProducts}></CartProducts>
         </Stack>
         <CheckOut></CheckOut>
