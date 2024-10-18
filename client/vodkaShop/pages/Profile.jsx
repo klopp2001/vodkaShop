@@ -77,7 +77,7 @@ export default function Profile() {
           }}
         >
           {activePage.name == "display" && <ProfileDetails />}
-          {activePage.name == "history" && <History orders={orders} />}
+          {activePage.name == "history" && <History/>}
           {activePage.name == "addresses" && (
             <Addresses
               addresses={[

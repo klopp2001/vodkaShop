@@ -1,6 +1,7 @@
 import { Button, Card, Stack } from "react-bootstrap"
+import { baseUrl, postRequest } from "../../../utils/services"
 
-export default function CheckOut() {
+export default function CheckOut({ products }) {
   return (
     <Card
       style={{ width: "25rem", minWidth: "14.188rem", maxWidth: "20.188rem" }}
@@ -29,7 +30,20 @@ export default function CheckOut() {
             <span>Total</span>
             <span>228</span>
           </Stack>
-          <Button variant="success">Checkout</Button>
+          <Button
+            onClick={() => {
+              const userId = JSON.parse(localStorage.getItem("User")).id
+              const addedProducts = products
+              const body = {
+                userId: userId,
+                products: addedProducts,
+              }
+              postRequest(`${baseUrl}/orderHistory/`, JSON.stringify(body))
+            }}
+            variant="success"
+          >
+            Checkout
+          </Button>
         </Stack>
       </Card.Body>
     </Card>

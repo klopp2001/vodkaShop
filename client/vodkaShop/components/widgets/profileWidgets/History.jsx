@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useLayoutEffect, useState } from "react"
 import { Button, Stack } from "react-bootstrap"
+import { baseUrl, getRequest } from "../../../utils/services"
 
 function HistoryProduct({ product }) {
   return (
@@ -64,7 +65,6 @@ function Order({ orderId, date, products }) {
         <Button
           onClick={() => {
             setViewOrder(!viewOrder)
-            
           }}
         >
           View order
@@ -77,13 +77,42 @@ function Order({ orderId, date, products }) {
   )
 }
 
-export default function History({ orders }) {
+export default function History() {
+  const [orders, setOrders] = useState(false)
+  useLayoutEffect(() => {
+    async function fetchData() {
+      //let t = 10
+      function Order(id, date, products) {
+        this.id = id
+        this.date = date
+        this.products = products
+      }
+      let orderArray = []
+      const userId = JSON.parse(localStorage.getItem("User")).id
+      const result = await getRequest(`${baseUrl}/orderHistory/${userId}`)
+
+      let test = {}
+      for (let row of result) {
+        if (!test[row.orderId]) {
+          test[row.orderId] = []
+        }
+        test[row.orderId].push(row.product)
+        //orderArray.push(new Order(row.orderId, row.date, row.products))
+      }
+      setOrders(orderArray)
+    }
+    fetchData()
+  }, [])
+
   let orderArray = new Array()
-  for (let order of orders) {
-    orderArray.push(
-      <Order orderId={order.id} date={order.date} products={order.products} />
-    )
+  if (orders) {
+    for (let order of orders) {
+      orderArray.push(
+        <Order orderId={order.id} date={order.date} products={order.products} />
+      )
+    }
   }
+
   return (
     <Stack>
       <h1 style={{ padding: "0", margin: "0" }}>History</h1>

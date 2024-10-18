@@ -23,17 +23,10 @@ const cartModel = sequalize.define(
     timestamps: false,
   }
 )
-//userModel.hasOne(cartModel)
-//productModel.belongsTo(cartModel)
 
 cartModel.belongsTo(userModel, { targetKey: "email", foreignKey: "userEmail" })
 
-//productModel.belongsTo(cartModel)
 productModel.hasMany(cartModel, { foreignKey: "productId" })
 cartModel.belongsTo(productModel)
-//productModel.sync({ force: true })
-//cartModel.sync({ force: true })
-//productModel.sync()
-//cartModel.sync()
 
 module.exports = cartModel

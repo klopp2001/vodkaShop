@@ -4,17 +4,17 @@ require("dotenv").config()
 
 const app = express()
 const sequelize = require("./database")
-const userModel = require("./model/userModel")
 const testModel = require("./model/productModel")
 const userRouter = require("./routes/userRoute")
 const productRouter = require("./routes/productsRoute")
 const cartRouter = require("./routes/cartRoute")
 const favouriteRouter = require("./routes/favouriteRouter")
+const orderHistoryRouter = require("./routes/orderHistoryRouter")
 
 const router = express.Router()
 
 router.use((req, res, next) => {
-  console.log("zig hail")
+  console.log("sd")
   next()
 })
 
@@ -45,6 +45,7 @@ app.use("/user", userRouter)
 app.use("/shop", productRouter)
 app.use("/cart", cartRouter)
 app.use("/favourite", favouriteRouter)
+app.use("/orderHistory", orderHistoryRouter)
 
 app.listen(port, (req, res) => {
   console.log(`server is running on port ${port}`)
